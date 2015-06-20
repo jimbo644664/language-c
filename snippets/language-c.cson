@@ -4,10 +4,10 @@
     'body': '#ifndef ${1:SYMBOL}\n#define $1 ${2:value}\n#endif'
   '#include <>':
     'prefix': 'inca'
-    'body': '#include <${1:.h}>'
+    'body': '#include <${1:header}>'
   '#include ""':
     'prefix': 'incq'
-    'body': '#include "${1:.h}"'
+    'body': '#include "${1:header}"'
   '#pragma mark':
     'prefix': 'mark'
     'body': '#if 0\n${1:#pragma mark -\n}#pragma mark $2\n#endif\n\n$0'
@@ -47,12 +47,12 @@
   'if elif else':
     'prefix': 'iffe'
     'body': 'if (${1:/* condition */})\n{\n\t${2:/* code */}\n}\nelse if (${3:/* condition */})\n{\n\t${4:/* code */}\n}\nelse\n{\n\t${5:/* code */}\n}'
-  'Switch Statement':
+  'switch statement':
     'prefix': 'switch'
-    'body': 'switch (${1:/* expression */})\n{\n\tcase ${2:/* value */}:\n\t${3:/* code */}\nbreak;\n}'
+    'body': 'switch (${1:/* expression */})\n{\n\tcase ${2:/* value */}:\n\t\t${3:/* code */}\n\t\tbreak;\n\n\tdefault:\n\t\tbreak\n}'
   'case':
     'prefix': 'case'
-    'body': 'case ${1:/* value */}:\n\t${2:/* code */}\nbreak;'
+    'body': 'case ${1:/* value */}:\n\t${2:/* code */}\n\tbreak;'
   'printf':
     'prefix': 'printf'
     'body': 'printf("${1:%s}\\\\n", $2);$3'
@@ -62,8 +62,11 @@
   'struct':
     'prefix': 'struct'
     'body': 'struct ${1:name_t}\n{\n\t${2:/* data */}\n};'
-  'function':
-    'prefix': 'func'
+  'function declaration':
+    'prefix': 'fdec'
+    'body': '${1:int} ${2:name}(${3:/* arguments */});$4'
+  'function definition':
+    'prefix': 'fdef'
     'body': '${1:int} ${2:name}(${3:/* arguments */})\n{\n\t${5:/* code */}\n\treturn ${4:0};\n}'
   'write file':
     'prefix': 'wf'
@@ -80,34 +83,37 @@
     'body': 'enum class ${1:name}\n{\n\t${2:/* values */}\n};'
   'class':
     'prefix': 'class'
-    'body': 'class ${1:name}\n{\n\tprotected:\n\t${0:/* data */}\n\npublic:\n\t${1:name}(${2:/* arguments */});\n\tvirtual ~${1:name}();\n\n};'
+    'body': 'class ${1:name}\n{\n\tprotected:\n\t${0:/* data */}\n\n\tpublic:\n\t${1:name}();\n\t${1:name}(${2:/* arguments */});\n\tvirtual ~${1:name}();\n\n};'
   'namespace':
     'prefix': 'ns'
-    'body': 'namespace ${1:name}\n{\n\t${2:/* code */}\n} // namespace $1'
+    'body': 'namespace ${1:name}\n{\n\t${2:/* code */}\n} // namespace ${1:name}'
   'cout':
-    'prefix': 'scout'
+    'prefix': 'sout'
     'body': 'std::cout << \"${1:/* message */}\" << std::endl;'
   'cin':
-    'prefix': 'scin'
+    'prefix': 'sin'
     'body': 'std::cin >> ${1:/* variable */};'
   'cerr':
-    'prefix': 'scerr'
+    'prefix': 'serr'
     'body': 'std::cerr << \"${1:/* message */}\" << std::endl;'
   'std::map':
     'prefix': 'smap'
-    'body': 'std::map<${1:key}, ${2:value}> $3;'
+    'body': 'std::map<${1:key}, ${2:value}> ${3:m};'
   'std::string':
     'prefix': 'sstr'
-    'body': 'std::string $1;'
+    'body': 'std::string ${1:str};'
   'std::vector':
     'prefix': 'svec'
-    'body': 'std::vector<${1:type}> $2;'
+    'body': 'std::vector<${1:type}> ${2:vec};'
+  'std::deque':
+    'prefix': 'sdeq'
+    'body': 'std::deque<${1:type}> ${2:vec};'
   'template <>':
     'prefix': 'tp'
     'body': 'template <typename ${1:T}>'
   'output file':
     'prefix': 'outf'
-    'body': 'ofstream ${1:ofile}("${2:filename.txt}", ios::out);\nif (${1:ofile}.is_open())\n{\n\t${1:ofile} << "${3:This is a line.}\\n";\n\t${1:ofile}.close();\n}'
+    'body': 'ofstream ${1:ofile}("${2:filename.txt}", ios::out);\nif (${1:ofile}.is_open())\n{\n\t${1:ofile} << "${3:This is a line.}\\\\n";\n\t${1:ofile}.close();\n}'
   'input file':
     'prefix': 'inf'
-    'body': 'ifstream ${1:ifile}("${2:filename.txt}", ios::in);\nif (${1:ifile}.is_open())\n{\n\tstring buffer;\n\twhile (getline(myfile,buffer))\n{\n\t\tstd::cout << buffer << endl;\n}\n\t${1:afile}.close();\n}\nelse\n{\n\tstd::cout << "Unable to open file" << std::endl;\n}'
+    'body': 'ifstream ${1:ifile}("${2:filename.txt}", ios::in);\nif (${1:ifile}.is_open())\n{\n\tstring buffer;\n\twhile (getline(myfile,buffer))\n\t{\n\t\tstd::cout << buffer << endl;\n\t}\n\t${1:afile}.close();\n}\nelse\n{\n\tstd::cout << "Unable to open file" << std::endl;\n}'
