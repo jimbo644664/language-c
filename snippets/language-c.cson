@@ -10,7 +10,7 @@
     'body': '#include "${1:header}"$2'
   'main declaration':
     'prefix': 'maindec'
-    'body': 'int main(int argc, const char** argv);$1'
+    'body': 'int main(int argc, const char** argv);'
   'main definition':
     'prefix': 'maindef'
     'body': 'int main(int argc, const char** argv)\n{\n\t${1:/* code */}\n\treturn ${2:0};\n}'
@@ -86,13 +86,13 @@
     'body': 'namespace ${1:name}\n{\n\t${2:/* code */}\n} // namespace ${1:name}'
   'cout':
     'prefix': 'sout'
-    'body': 'std::cout << \"${1:/* message */}\" << std::endl;$2'
+    'body': 'std::cout << ${1:/* message */} << std::endl;$2'
   'cin':
     'prefix': 'sin'
     'body': 'std::cin >> ${1:/* variable */};$2'
   'cerr':
     'prefix': 'serr'
-    'body': 'std::cerr << \"${1:/* message */}\" << std::endl;$2'
+    'body': 'std::cerr << ${1:/* message */} << std::endl;$2'
   'std::map':
     'prefix': 'smap'
     'body': 'std::map<${1:key}, ${2:value}> ${3:m};$4'
