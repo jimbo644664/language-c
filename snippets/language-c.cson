@@ -21,7 +21,7 @@
     'prefix': 'once'
     'body': '#ifndef   ${1:SYMBOL}\n#define   $1\n\n$2\n\n#endif // $1'
   'typedef':
-    'prefix': 'typedef'
+    'prefix': 'tdef'
     'body': 'typedef ${1:oldtype} ${2:newtype};$3'
   'do while loop':
     'prefix': 'do'
@@ -106,7 +106,7 @@
     'prefix': 'sdeq'
     'body': 'std::deque<${1:type}> ${2:vec};'
   'template specifier':
-    'prefix': 'template'
+    'prefix': 'tplate'
     'body': 'template <typename ${1:type}>$2'
   'output file':
     'prefix': 'outf'
