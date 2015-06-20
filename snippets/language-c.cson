@@ -13,7 +13,7 @@
     'body': 'int main(int argc, const char** argv);$1'
   'main definition':
     'prefix': 'maindef'
-    'body': 'int main(int argc, const char** argv)\n{\n\t${1:/* code */}\n\treturn 0;\n}'
+    'body': 'int main(int argc, const char** argv)\n{\n\t${1:/* code */}\n\treturn ${2:0};\n}'
   'for loop':
     'prefix': 'for'
     'body': 'for (int ${1:i} = 0; $1 < ${2:count}; $1${3:++})\n{\n\t${4:/* code */}\n}'
@@ -21,7 +21,7 @@
     'prefix': 'once'
     'body': '#ifndef   ${1:SYMBOL}\n#define   $1\n\n$2\n\n#endif // $1'
   'typedef':
-    'prefix': 'tdef'
+    'prefix': 'typedef'
     'body': 'typedef ${1:oldtype} ${2:newtype};$3'
   'do while loop':
     'prefix': 'do'
@@ -64,7 +64,7 @@
     'body': '${1:int} ${2:name}(${3:/* arguments */});$4'
   'function definition':
     'prefix': 'fdef'
-    'body': '${1:int} ${2:name}(${3:/* arguments */})\n{\n\t${5:/* code */}\n\treturn ${4:0};\n}'
+    'body': '${1:int} ${2:name}(${3:/* arguments */})\n{\n\t${4:/* code */}\n\treturn ${5:0};\n}'
   'write file':
     'prefix': 'wf'
     'body': 'FILE *${1:fp};\n${1:fp} = fopen("${2:filename.txt}","w");\nif (${1:fp}!=NULL)\n{\n\tfprintf(${1:fp},"${3:Some String\\\\n}");\n\tfclose(${1:fp});\n}'
@@ -106,7 +106,7 @@
     'prefix': 'sdeq'
     'body': 'std::deque<${1:type}> ${2:vec};'
   'template specifier':
-    'prefix': 'tplate'
+    'prefix': 'template'
     'body': 'template <typename ${1:type}>$2'
   'output file':
     'prefix': 'outf'
