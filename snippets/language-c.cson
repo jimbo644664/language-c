@@ -46,10 +46,10 @@
     'body': 'if (${1:/* condition */})\n{\n\t${2:/* code */}\n}\nelse if (${3:/* condition */})\n{\n\t${4:/* code */}\n}\nelse\n{\n\t${5:/* code */}\n}'
   'switch statement':
     'prefix': 'switch'
-    'body': 'switch (${1:/* expression */})\n{\n\tcase ${2:/* value */}:\n\t\t${3:/* code */}\n\t\tbreak;\n\n\t${4:/* cases */}\n\n\tdefault:\n\t\tbreak;\n\n}'
+    'body': 'switch (${1:/* expression */})\n{\n\tcase ${2:/* value */}:\n\t\t${4:/* code */}\n\t\tbreak;\n\n\t${3:/* cases */}\n\n\tdefault:\n\t\t${5:/* code */}\n\t\tbreak;\n\n}'
   'case':
     'prefix': 'case'
-    'body': 'case ${1:/* value */}:\n\t${2:/* code */}\n\tbreak;\n\n${3:/* cases */}'
+    'body': 'case ${1:/* value */}:\n\t${3:/* code */}\n\tbreak;\n\n${2:/* cases */}'
   'printf':
     'prefix': 'printf'
     'body': 'printf("${1:%s}\\\\n", $2);$3'
@@ -80,7 +80,7 @@
     'body': 'enum class ${1:name}\n{\n\t${2:/* values */}\n};'
   'class':
     'prefix': 'class'
-    'body': 'class ${1:name}\n{\n\tprotected:\n\t${3:/* data */}\n\n\tpublic:\n\t${1:name}();\n\t${1:name}(${2:/* arguments */});\n\t${1:name}(const ${1:name}& rhs);\n\n\t${4:/* functions */}\n\n\tvirtual ~${1:name}();\n\n};'
+    'body': 'class ${1:name}\n{\n\tprotected:\n\t\t${3:/* data */}\n\n\tpublic:\n\t\t${1:name}();\n\t\t${1:name}(${2:/* arguments */});\n\t\t${1:name}(const ${1:name}& rhs);\n\n\t\t${4:/* functions */}\n\n\t\tvirtual ~${1:name}();\n\n};'
   'namespace':
     'prefix': 'ns'
     'body': 'namespace ${1:name}\n{\n\t${2:/* code */}\n} // namespace ${1:name}'
