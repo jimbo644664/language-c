@@ -17,9 +17,6 @@
   'for loop':
     'prefix': 'for'
     'body': 'for (${1:type} ${2:index} = ${3:initial}; ${2:index} < ${4:final}; ${5:step})\n{\n\t${6:/* code */}\n}'
-  'for each in':
-    'prefix': 'fore'
-    'body': 'for (${1:type} ${2:element}: ${3:container})\n{\n\t${4:/* code */}\n}'
   'include guard':
     'prefix': 'once'
     'body': '#ifndef   ${1:SYMBOL}\n#define   $1\n\n${2:/* code */}\n\n#endif // $1'
@@ -75,6 +72,9 @@
     'prefix': 'rf'
     'body': 'FILE *${1:fp};\n${1:fp} = fopen("${2:filename.txt}","r");\nif (${1:fp}!=NULL)\n{\n\tfscanf(${1:fp},"${3:Some String\\\\n}", ${3:&var});\n\tfclose(${1:fp});\n}'
 '.source.cpp, .source.objcpp':
+  'for each in':
+    'prefix': 'fore'
+    'body': 'for (${1:type} ${2:element}: ${3:container})\n{\n\t${4:/* code */}\n}'
   'enumeration':
     'prefix': 'enum'
     'body': 'enum ${1:name}\n{\n\t${2:/* values */}\n};'
