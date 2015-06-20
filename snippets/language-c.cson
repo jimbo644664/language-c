@@ -49,7 +49,7 @@
     'body': 'switch (${1:/* expression */})\n{\n\tcase ${2:/* value */}:\n\t\t${3:/* code */}\n\t\tbreak;\n\n\t${4:/* cases */}\n\n\tdefault:\n\t\tbreak;\n\n}'
   'case':
     'prefix': 'case'
-    'body': 'case ${1:/* value */}:\n\t${2:/* code */}\n\tbreak;\n'
+    'body': 'case ${1:/* value */}:\n\t${2:/* code */}\n\tbreak;\n\n${3:/* cases */}'
   'printf':
     'prefix': 'printf'
     'body': 'printf("${1:%s}\\\\n", $2);$3'
