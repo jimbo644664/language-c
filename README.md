@@ -7,3 +7,6 @@ from the [C TextMate bundle](https://github.com/textmate/c.tmbundle).
 
 Contributions are greatly appreciated. Please fork this repository and open a
 pull request to add snippets, make grammar tweaks, etc.
+
+This version created to use different brace styles, as well as adding some new
+syntax.
