@@ -3,111 +3,111 @@
     'prefix': 'def'
     'body': '#ifndef ${1:SYMBOL}\n#define $1 ${2:value}\n#endif'
   '#include <>':
-    'prefix': 'Inc'
+    'prefix': 'inca'
     'body': '#include <${1:.h}>'
   '#include ""':
-    'prefix': 'inc'
+    'prefix': 'incq'
     'body': '#include "${1:.h}"'
   '#pragma mark':
     'prefix': 'mark'
     'body': '#if 0\n${1:#pragma mark -\n}#pragma mark $2\n#endif\n\n$0'
   'main()':
     'prefix': 'main'
-    'body': 'int main(int argc, char const *argv[]) {\n\t${1:/* code */}\n\treturn 0;\n}'
-  'For Loop':
+    'body': 'int main(int argc, const char** argv)\n{\n\t${1:/* code */}\n\treturn 0;\n}'
+  'for loop':
     'prefix': 'for'
-    'body': 'for (size_t ${1:i} = 0; $1 < ${2:count}; $1${3:++}) {\n\t${4:/* code */}\n}'
-  'Header Include-Guard':
+    'body': 'for (int ${1:i} = 0; $1 < ${2:count}; $1${3:++})\n{\n\t${4:/* code */}\n}'
+  '#include guard':
     'prefix': 'once'
-    'body': '#ifndef ${1:SYMBOL}\n#define $1\n\n${2}\n\n#endif /* end of include guard: $1 */\n'
-  'Shared Pointer':
+    'body': '#ifndef   ${1:SYMBOL}\n#define   $1\n\n${2}\n\n#endif // $1'
+  'shared pointer':
     'prefix': 'sp'
     'body': 'typedef std::shared_ptr<${2:${1:my_type}_t}> ${3:${4:my_type}_ptr};'
-  'Typedef':
+  'typedef':
     'prefix': 'td'
-    'body': 'typedef ${1:int} ${2:MyCustomType};'
-  'Do While Loop':
+    'body': 'typedef ${1:oldtype} ${2:newtype};'
+  'do while loop':
     'prefix': 'do'
-    'body': 'do {\n\t${0:/* code */}\n} while(${1:/* condition */});'
-  'While Loop':
+    'body': 'do\n{\n\t${0:/* code */}\n} while(${1:/* condition */});'
+  'while loop':
     'prefix': 'while'
-    'body': 'while (${1:/* condition */}) {\n\t${2:/* code */}\n}'
+    'body': 'while (${1:/* condition */})\n{\n\t${2:/* code */}\n}'
   'fprintf':
     'prefix': 'fprintf'
     'body': 'fprintf(${1:stderr}, "${2:%s}\\\\n", $3);$4'
-  'If Condition':
+  'if condition':
     'prefix': 'if'
-    'body': 'if (${1:/* condition */}) {\n\t${2:/* code */}\n}'
-  'If Else':
+    'body': 'if (${1:/* condition */})\n{\n\t${2:/* code */}\n}'
+  'if else':
     'prefix': 'ife'
-    'body': 'if (${1:/* condition */}) {\n\t${2:/* code */}\n}\nelse {\n\t${3:/* code */}\n}'
-  'If ElseIf':
+    'body': 'if (${1:/* condition */})\n{\n\t${2:/* code */}\n}\nelse\n{\n\t${3:/* code */}\n}'
+  'if elif':
     'prefix': 'iff'
-    'body': 'if (${1:/* condition */}) {\n\t${2:/* code */}\n}\nelse if (${3:/* condition */}) {\n\t${4:/* code */}\n}'
-  'If ElseIf Else':
+    'body': 'if (${1:/* condition */})\n{\n\t${2:/* code */}\n}\nelse if (${3:/* condition */})\n{\n\t${4:/* code */}\n}'
+  'if elif else':
     'prefix': 'iffe'
-    'body': 'if (${1:/* condition */}) {\n\t${2:/* code */}\n}\nelse if (${3:/* condition */}) {\n\t${4:/* code */}\n}\nelse {\n\t${5:/* code */}\n}'
+    'body': 'if (${1:/* condition */})\n{\n\t${2:/* code */}\n}\nelse if (${3:/* condition */})\n{\n\t${4:/* code */}\n}\nelse\n{\n\t${5:/* code */}\n}'
   'Switch Statement':
     'prefix': 'switch'
-    'body': 'switch (${1:/* expression */}) {\n\tcase ${2:/* value */}:\n}'
+    'body': 'switch (${1:/* expression */})\n{\n\tcase ${2:/* value */}:\n\t${3:/* code */}\nbreak;\n}'
   'case':
-    'prefix': 'cs'
-    'body': 'case ${1:/* value */}:$0'
+    'prefix': 'case'
+    'body': 'case ${1:/* value */}:\n\t${2:/* code */}\nbreak;'
   'printf':
     'prefix': 'printf'
     'body': 'printf("${1:%s}\\\\n", $2);$3'
   'scanf':
     'prefix': 'scanf'
     'body': 'scanf(\"${1:%s}\\\\n\", $2);$3'
-  'Struct':
-    'prefix': 'st'
-    'body': 'struct ${1:name_t} {\n\t${2:/* data */}\n};'
-  'void':
-    'prefix': 'void'
-    'body': 'void ${1:name}(${2:/* arguments */}) {\n\t${3:/* code */}\n}'
-  'any function':
+  'struct':
+    'prefix': 'struct'
+    'body': 'struct ${1:name_t}\n{\n\t${2:/* data */}\n};'
+  'function':
     'prefix': 'func'
-    'body': '${1:int} ${2:name}(${3:/* arguments */}) {\n\t${5:/* code */}\n\treturn ${4:0};\n}'
+    'body': '${1:int} ${2:name}(${3:/* arguments */})\n{\n\t${5:/* code */}\n\treturn ${4:0};\n}'
   'write file':
     'prefix': 'wf'
-    'body': 'FILE *${1:fp};\n${1:fp} = fopen ("${2:filename.txt}","w");\nif (${1:fp}!=NULL)\n{\n\tfprintf(${1:fp},"${3:Some String\\\\n}");\n\tfclose (${1:fp});\n}'
+    'body': 'FILE *${1:fp};\n${1:fp} = fopen("${2:filename.txt}","w");\nif (${1:fp}!=NULL)\n{\n\tfprintf(${1:fp},"${3:Some String\\\\n}");\n\tfclose(${1:fp});\n}'
   'read file':
     'prefix': 'rf'
-    'body': 'FILE *${1:fp};\n${1:fp} = fopen ("${2:filename.txt}","r");\nif (${1:fp}!=NULL)\n{\n\tfscanf(${1:fp},"${3:Some String\\\\n}", ${3:&var});\n\tfclose (${1:fp});\n}'
+    'body': 'FILE *${1:fp};\n${1:fp} = fopen("${2:filename.txt}","r");\nif (${1:fp}!=NULL)\n{\n\tfscanf(${1:fp},"${3:Some String\\\\n}", ${3:&var});\n\tfclose(${1:fp});\n}'
 '.source.cpp, .source.objcpp':
-  'Enumeration':
+  'enumeration':
     'prefix': 'enum'
-    'body': 'enum ${1:name} { $0 };'
-  'Class':
-    'prefix': 'cl'
-    'body': 'class ${1:name_t} {\nprivate:\n\t${0:/* data */}\npublic:\n\t${1:name_t} (${2:arguments});\n\tvirtual ~${1:name_t} ();\n\n};'
-  'Namespace':
+    'body': 'enum ${1:name}\n{\n\t${2:/* values */}\n};'
+  'enum class':
+    'prefix': 'enumc'
+    'body': 'enum class ${1:name}\n{\n\t${2:/* values */}\n};'
+  'class':
+    'prefix': 'class'
+    'body': 'class ${1:name}\n{\n\tprotected:\n\t${0:/* data */}\n\npublic:\n\t${1:name}(${2:/* arguments */});\n\tvirtual ~${1:name}();\n\n};'
+  'namespace':
     'prefix': 'ns'
-    'body': 'namespace ${1:name} {\n\t$2\n} /* $1 */'
+    'body': 'namespace ${1:name}\n{\n\t${2:/* code */}\n} // namespace $1'
   'cout':
-    'prefix': 'cout'
+    'prefix': 'scout'
     'body': 'std::cout << \"${1:/* message */}\" << std::endl;'
   'cin':
-    'prefix': 'cin'
+    'prefix': 'scin'
     'body': 'std::cin >> ${1:/* variable */};'
   'cerr':
-    'prefix': 'cerr'
-    'body': 'std::cerr << \"${1:/* error message */}\" << std::endl;'
+    'prefix': 'scerr'
+    'body': 'std::cerr << \"${1:/* message */}\" << std::endl;'
   'std::map':
-    'prefix': 'map'
-    'body': 'std::map<${1:key}, ${2:value}> map$3;'
+    'prefix': 'smap'
+    'body': 'std::map<${1:key}, ${2:value}> $3;'
   'std::string':
-    'prefix': 'str'
-    'body': 'std::string'
+    'prefix': 'sstr'
+    'body': 'std::string $1;'
   'std::vector':
-    'prefix': 'vector'
-    'body': 'std::vector<${1:char}> v$2;'
-  'template <typename>':
+    'prefix': 'svec'
+    'body': 'std::vector<${1:type}> $2;'
+  'template <>':
     'prefix': 'tp'
-    'body': 'template <typename ${1:_InputIter}>'
+    'body': 'template <typename ${1:T}>'
   'output file':
     'prefix': 'outf'
-    'body': 'ofstream ${1:afile} ("${2:filename.txt}", ios::out);\nif(${1:afile}.is_open()) { \n\t${1:afile} << "${3:This is a line.}\\\\n";\n\t${1:afile}.close();\n}'
+    'body': 'ofstream ${1:ofile}("${2:filename.txt}", ios::out);\nif (${1:ofile}.is_open())\n{\n\t${1:ofile} << "${3:This is a line.}\\n";\n\t${1:ofile}.close();\n}'
   'input file':
     'prefix': 'inf'
-    'body': 'ifstream ${1:afile} ("${2:filename.txt}",ios::in);\nif(${1:afile}.is_open()) { \n\tstring buffer;\n\twhile( getline(myfile,buffer) ) {\n\t\tcout << line << endl;\n\t}\n\t\t${1:afile}.close();\n\t}\nelse {\n\tcout << "Unable to open file" << endl;\n}'
+    'body': 'ifstream ${1:ifile}("${2:filename.txt}", ios::in);\nif (${1:ifile}.is_open())\n{\n\tstring buffer;\n\twhile (getline(myfile,buffer))\n{\n\t\tstd::cout << buffer << endl;\n}\n\t${1:afile}.close();\n}\nelse\n{\n\tstd::cout << "Unable to open file" << std::endl;\n}'
