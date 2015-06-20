@@ -21,8 +21,8 @@
     'prefix': 'once'
     'body': '#ifndef   ${1:SYMBOL}\n#define   $1\n\n$2\n\n#endif // $1'
   'typedef':
-    'prefix': 'td'
-    'body': 'typedef ${1:oldtype} ${2:newtype};'
+    'prefix': 'typedef'
+    'body': 'typedef ${1:oldtype} ${2:newtype};$3'
   'do while loop':
     'prefix': 'do'
     'body': 'do\n{\n\t${0:/* code */}\n} while(${1:/* condition */});'
@@ -86,28 +86,28 @@
     'body': 'namespace ${1:name}\n{\n\t${2:/* code */}\n} // namespace ${1:name}'
   'cout':
     'prefix': 'sout'
-    'body': 'std::cout << \"${1:/* message */}\" << std::endl;'
+    'body': 'std::cout << \"${1:/* message */}\" << std::endl;$2'
   'cin':
     'prefix': 'sin'
-    'body': 'std::cin >> ${1:/* variable */};'
+    'body': 'std::cin >> ${1:/* variable */};$2'
   'cerr':
     'prefix': 'serr'
-    'body': 'std::cerr << \"${1:/* message */}\" << std::endl;'
+    'body': 'std::cerr << \"${1:/* message */}\" << std::endl;$2'
   'std::map':
     'prefix': 'smap'
-    'body': 'std::map<${1:key}, ${2:value}> ${3:m};'
+    'body': 'std::map<${1:key}, ${2:value}> ${3:m};$4'
   'std::string':
     'prefix': 'sstr'
-    'body': 'std::string ${1:str};'
+    'body': 'std::string ${1:str};$2'
   'std::vector':
     'prefix': 'svec'
-    'body': 'std::vector<${1:type}> ${2:vec};'
+    'body': 'std::vector<${1:type}> ${2:vec};$3'
   'std::deque':
     'prefix': 'sdeq'
     'body': 'std::deque<${1:type}> ${2:vec};'
-  'template <>':
-    'prefix': 'tp'
-    'body': 'template <typename ${1:T}>'
+  'template specifier':
+    'prefix': 'template'
+    'body': 'template <typename ${1:type}>$2'
   'output file':
     'prefix': 'outf'
     'body': 'ofstream ${1:ofile}("${2:filename.txt}", ios::out);\nif (${1:ofile}.is_open())\n{\n\t${1:ofile} << "${3:This is a line.}\\\\n";\n\t${1:ofile}.close();\n}'
