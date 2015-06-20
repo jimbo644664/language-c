@@ -16,7 +16,7 @@
     'body': 'int main(int argc, const char** argv)\n{\n\t${1:/* code */}\n\treturn ${2:0};\n}'
   'for loop':
     'prefix': 'for'
-    'body': 'for (int ${1:i} = 0; $1 < ${2:count}; $1${3:++})\n{\n\t${4:/* code */}\n}'
+    'body': 'for (int ${1:i} = 0; ${1:i} < ${2:count}; ${1:i}${3:++})\n{\n\t${4:/* code */}\n}'
   'include guard':
     'prefix': 'once'
     'body': '#ifndef   ${1:SYMBOL}\n#define   $1\n\n${2:/* code */}\n\n#endif // $1'
